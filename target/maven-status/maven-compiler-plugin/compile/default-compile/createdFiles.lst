@@ -1,0 +1,4 @@
+com\itlaoqi\ssm\entity\Goods.class
+com\itlaoqi\ssm\service\GoodsService.class
+com\itlaoqi\ssm\mapper\GoodsMapper.class
+com\itlaoqi\ssm\controller\HelloController.class

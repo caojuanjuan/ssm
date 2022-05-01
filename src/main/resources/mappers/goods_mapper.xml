@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--namespace指向接口-->
+<mapper namespace="com.itlaoqi.ssm.mapper.GoodsMapper">
+    <!--
+        id与方法名保持一致
+        parameterType与参数类型保持一致
+        resultType与方法返回值保持一致
+     -->
+    <select id="findById" parameterType="Integer" resultType="com.itlaoqi.ssm.entity.Goods">
+      select * from t_goods where goods_id = #{value}
+    </select>
+
+    <select id="findByCondition" parameterType="java.util.Map" resultType="com.itlaoqi.ssm.entity.Goods">
+      select * from t_goods
+      where
+        category_id = #{categoryId}
+        and current_price > #{currentPrice}
+    </select>
+
+    <insert id="insert" parameterType="com.itlaoqi.ssm.entity.Goods">
+        INSERT INTO `babytun`.`t_goods`( `title`, `sub_title`, `original_cost`, `current_price`, `discount`, `is_free_delivery`, `category_id`)
+        VALUES ( #{title}, #{subTitle}, #{originalCost}, #{currentPrice}, #{discount}, #{isFreeDelivery}, #{categoryId})
+        <selectKey resultType="int" keyProperty="goodsId" order="AFTER">
+            <!-- 当前连接中最后产生的id号 -->
+            select last_insert_id()
+        </selectKey>
+    </insert>
+</mapper>
